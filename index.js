@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const responseTime = require('response-time');
 const session = require('express-session');
+const passport = require('passport');
+
+require('./auth/passport');
 
 const config = require('./config');
 
@@ -15,11 +18,16 @@ app.use(responseTime());
 app.use(morgan('combined'));
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json())
 
 app.use(session({
   secret: 'foobar',
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(bodyParser.json())
+
 app.use('/api', userRoutes);
 app.use('/api/teams', teamRoutes);
 

@@ -1,8 +1,12 @@
 const express = require('express');
-const userCtrl = require('./user.controller');
+const passport = require('passport');
 const loginRouter = express.Router();
 
+loginRouter.post('/login', passport.authenticate('local'), (req, res) => {
 
-loginRouter.post('/login', userCtrl.handleLogin);
+  res.send({msg: 'Successful Login', username: req.user.username});
+
+});
+
 
 module.exports = loginRouter;
