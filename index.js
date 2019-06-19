@@ -1,4 +1,7 @@
 
-console.log('Process Argv is ',  process.argv);
-console.log('First argument is ', process.argv[2]);
-console.log('Number of arguments are ', process.argv.length - 2);
+const fs = require('fs');
+
+const filename = process.argv[2];
+
+const fileContent = fs.readFileSync(filename, 'UTF-8');
+console.log("File contents are", fileContent);

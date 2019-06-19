@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Manchester United", "type": "Soccer", "featured": true, "country": "England"},
+  { "id": 2, "name": "Manchester City", "type": "Soccer", "featured": false, "country": "England"},
+  { "id": 3, "name": "Barcelona", "type": "Soccer", "featured": true, "country": "Spain"},
+  { "id": 4, "name": "Real Madrid", "type": "Soccer", "featured": true, "country": "Spain"}
+]
