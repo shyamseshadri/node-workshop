@@ -15,6 +15,16 @@ app.get('/api/teams', (req, res) => {
   });
 });
 
+app.get('/api/teams/:id', (req, res) => {
+  const id = Number(req.params.id);
+  teamCtrl.getTeams((err, teams) => {
+    teamCtrl.addMoreData(teams[id - 1], function (err, teamData) {
+      teams[id - 1].more = teamData;
+      res.json(teams[id - 1]);
+    });
+  });
+});
+
 app.post('/api/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
