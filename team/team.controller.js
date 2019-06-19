@@ -8,7 +8,7 @@ module.exports = {
     if (teams.length !== 0) {
       return cb(null, teams);
     }
-    fs.readFile('teams.json', 'UTF-8', (err, data) => {
+    fs.readFile('data/teams.json', 'UTF-8', (err, data) => {
       teams = JSON.parse(data);
       cb(null, teams);
     })
@@ -18,7 +18,7 @@ module.exports = {
     if (teams.length !== 0) {
       return cb(null, teams[i]);
     }
-    fs.readFile('teams.json', 'UTF-8', (err, data) => {
+    fs.readFile('data/teams.json', 'UTF-8', (err, data) => {
       teams = JSON.parse(data);
       cb(null, teams[i]);
     })
