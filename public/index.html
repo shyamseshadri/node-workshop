@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+  <script type="text/javascript" src="angularApp.js"></script>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="LoginCtrl as ctrl">
+    <h3>Login</h3>
+    <form>
+      <input type="text" ng-model="ctrl.user.username" placeholder="Username" />
+      <input type="password" ng-model="ctrl.user.password" placeholder="Password" />
+      <input type="button" value="Login" ng-click="ctrl.login()">
+    </form>
+    <h3 ng-bind="ctrl.message"></h3>
+  </div>
+</body>
+</html>
