@@ -4,16 +4,23 @@ const fs = require('fs');
 let teams = [];
 
 module.exports = {
-  getTeams: function() {
-    if (teams.length === 0) {
-      teams = JSON.parse(fs.readFileSync('teams.json', 'UTF-8'));
+  getTeams: function(cb) {
+    if (teams.length !== 0) {
+      return cb(null, teams);
     }
-    return teams;
+    fs.readFile('teams.json', 'UTF-8', (err, data) => {
+      teams = JSON.parse(data);
+      cb(null, teams);
+    })
+
   },
-  getTeam: function(i) {
-    if (teams.length === 0) {
-      teams = JSON.parse(fs.readFileSync('teams.json', 'UTF-8'));
+  getTeam: function(i, cb) {
+    if (teams.length !== 0) {
+      return cb(null, teams[i]);
     }
-    return teams[i];
+    fs.readFile('teams.json', 'UTF-8', (err, data) => {
+      teams = JSON.parse(data);
+      cb(null, teams[i]);
+    })
   }
 };
