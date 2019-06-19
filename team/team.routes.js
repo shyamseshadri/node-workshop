@@ -1,0 +1,22 @@
+const express = require('express');
+const teamCtrl = require('./team.controller');
+
+const teamRouter = express.Router();
+
+teamRouter.get('/', (req, res) => {
+  teamCtrl.getTeams((err, teams) => {
+    res.status(200).json(teams);
+  });
+});
+
+teamRouter.get('/:id', (req, res) => {
+  const id = Number(req.params.id);
+  teamCtrl.getTeams((err, teams) => {
+    teamCtrl.addMoreData(teams[id - 1], function (err, teamData) {
+      teams[id - 1].more = teamData;
+      res.json(teams[id - 1]);
+    });
+  });
+});
+
+module.exports = teamRouter;
