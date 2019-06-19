@@ -1,24 +1,28 @@
 
-const teamCtrl = require('./team/team.controller');
+const async = require('async');
+const teamCtrl= require('./team/team.controller');
 
-const loadTeamData = (team, cb) => {
-  teamCtrl.loadMoreData(team, (err, teamData) => {
-    team.more = teamData;
-    cb();
-  });
+const loadTeamData = (team) => {
+  return (cb) => {
+    teamCtrl.addMoreData(team, cb)
+  };
 };
 
 teamCtrl.getTeams((err, teams) => {
-  var count = 0;
+  var functionArray = [];
   for (var i = 0; i < teams.length; i++) {
-    loadTeamData(teams[i], () => {
-      count++;
-      if (count == teams.length) {
-        console.log('Fully loaded teams ', teams);
-      }
-    });
+    functionArray.push(loadTeamData(teams[i]));
   }
+  async.parallel(functionArray, function(err, teamsExtraInfo) {
+    for (var i = 0; i < teams.length; i++) {
+      teams[i].more = teamsExtraInfo[i];
+    }
+    console.log('Teams info is ', teams);
+  });
 });
 
 
-console.log('Done with file');
+
+
+
+
