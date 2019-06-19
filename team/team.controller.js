@@ -22,5 +22,10 @@ module.exports = {
       teams = JSON.parse(data);
       cb(null, teams[i]);
     })
+  },
+  loadMoreData: function(team, cb) {
+    fs.readFile(`data/team-${team.id}.json`, 'UTF-8', (err, data) => {
+      cb(null, JSON.parse(data));
+    });
   }
 };
