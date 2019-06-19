@@ -6,6 +6,7 @@ const responseTime = require('response-time');
 const session = require('express-session');
 const passport = require('passport');
 
+require('./sequelize');
 require('./auth/passport');
 
 const config = require('./config');
