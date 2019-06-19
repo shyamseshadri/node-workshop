@@ -2,6 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const config = require('./config');
+
 const app = express();
 const teamRoutes = require('./team/team.routes');
 const userRoutes = require('./user/user.routes');
@@ -15,6 +17,7 @@ app.use('/api/teams', teamRoutes);
 
 app.listen(3000, () => {
   console.log('Server is running at http://localhost:3000');
+  console.log('CONFIG IS ', config);
 });
 
 
