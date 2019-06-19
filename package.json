@@ -20,5 +20,9 @@
     "pg": "^7.11.0",
     "response-time": "^2.3.2",
     "sequelize": "^5.8.10"
+  },
+  "devDependencies": {
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }

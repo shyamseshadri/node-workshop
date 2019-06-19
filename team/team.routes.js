@@ -10,7 +10,7 @@ const isLoggedIn = (req, res, next) => {
   return res.status(401).json({msg: 'Unauthorized'});
 }
 
-teamRouter.get('/', isLoggedIn, (req, res) => {
+teamRouter.get('/', (req, res) => {
   req.session.permission = true;
   teamCtrl.getTeams((err, teams) => {
     res.status(200).json(teams);

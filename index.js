@@ -37,6 +37,8 @@ app.listen(3000, () => {
   console.log('CONFIG IS ', config);
 });
 
+module.exports = app;
+
 
 
 
