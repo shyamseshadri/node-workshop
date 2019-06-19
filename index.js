@@ -1,16 +1,11 @@
 
-const teamCtrl = require('./team/team.controller');
+// Sequential, sync
+const fs = require('fs');
 
-teamCtrl.getTeams((err, teams) => {
-  console.log('All Teams', teams);
-});
+const teams = JSON.parse(fs.readFileSync('data/teams.json'));
 
-teamCtrl.getTeam(0, (err, team) => {
-  console.log('First Team', team);
-});
+for (let i = 0; i < teams.length; i++) {
+  teams[i].more = JSON.parse(fs.readFileSync(`data/team-${teams[i].id}.json`));
+}
 
-teamCtrl.getTeam(2, (err, team) => {
-  console.log('Third Team', team);
-});
-
-console.log('Done with file');
+console.log('Fully loaded teams ', teams);
