@@ -1,26 +1,15 @@
 
-const async = require('async');
-const teamCtrl= require('./team/team.controller');
+const express = require('express');
 
-const loadTeamData = (team) => {
-  return (cb) => {
-    teamCtrl.addMoreData(team, cb)
-  };
-};
+const app = express();
 
-teamCtrl.getTeams((err, teams) => {
-  var functionArray = [];
-  for (var i = 0; i < teams.length; i++) {
-    functionArray.push(loadTeamData(teams[i]));
-  }
-  async.parallel(functionArray, function(err, teamsExtraInfo) {
-    for (var i = 0; i < teams.length; i++) {
-      teams[i].more = teamsExtraInfo[i];
-    }
-    console.log('Teams info is ', teams);
-  });
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
+app.listen(3000, () => {
+  console.log('Server is running at http://localhost:3000');
+});
 
 
 

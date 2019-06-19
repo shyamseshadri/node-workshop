@@ -9,6 +9,7 @@
   "author": "Shyam Seshadri",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.0.1"
+    "async": "^3.0.1",
+    "express": "^4.17.1"
   }
 }
