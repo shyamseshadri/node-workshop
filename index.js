@@ -1,18 +1,6 @@
 
-const fs = require('fs');
-const filename = process.argv[2];
+const teamCtrl = require('./team/team.controller');
 
-const readStream = fs.createReadStream(filename, 'UTF-8');
-
-readStream.on('data', (data) => {
-  console.log("Reading file data event : ", data);
-});
-readStream.on('end', () => {
-  console.log('file ended');
-});
-
-readStream.on('error', (e) => {
-  console.log('error found', e);
-});
-
-console.log('End of file');
+console.log('First call', teamCtrl.getTeams());
+console.log('First team', teamCtrl.getTeam(0));
+console.log('Third team', teamCtrl.getTeam(2));
