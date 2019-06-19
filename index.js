@@ -1,7 +1,18 @@
 
 const fs = require('fs');
-
 const filename = process.argv[2];
 
-const fileContent = fs.readFileSync(filename, 'UTF-8');
-console.log("File contents are", fileContent);
+const readStream = fs.createReadStream(filename, 'UTF-8');
+
+readStream.on('data', (data) => {
+  console.log("Reading file data event : ", data);
+});
+readStream.on('end', () => {
+  console.log('file ended');
+});
+
+readStream.on('error', (e) => {
+  console.log('error found', e);
+});
+
+console.log('End of file');
