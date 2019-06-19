@@ -2,9 +2,12 @@
 const express = require('express');
 
 const app = express();
+const teamCtrl = require('./team/team.controller');
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  teamCtrl.getTeams((err, teams) => {
+    res.status(200).json(teams);
+  });
 });
 
 app.listen(3000, () => {
